@@ -42,7 +42,7 @@ The following pluging usage:
 
 will generate the following class:
 ```java
-package org.bbe.maven.plugins.it;
+package com.mycompany.myproject;
 
 
 /**
