@@ -4,7 +4,7 @@
   
   <groupId>org.bbe.maven.plugins</groupId>
   <artifactId>artifact-info-maven-plugin</artifactId>
-  <version>1.0</version>
+  <version>1.0-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
   
   <name>Artifact Info Maven Plugin</name>
@@ -20,7 +20,6 @@
     <url>https://github.com/BBE78/artifact-info-maven-plugin</url>
     <connection>scm:git:git://github.com/BBE78/artifact-info-maven-plugin.git</connection>
     <developerConnection>scm:git:git://github.com/BBE78/artifact-info-maven-plugin.git</developerConnection>
-    <tag>1.0</tag>
   </scm>
   
   <issueManagement>
