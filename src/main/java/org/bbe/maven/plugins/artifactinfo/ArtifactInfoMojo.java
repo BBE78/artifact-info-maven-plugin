@@ -18,8 +18,8 @@ import org.codehaus.plexus.util.IOUtil;
 
 
 /**
- * 
- * 
+ *
+ *
  * @author Benoît BERTHONNEAU
  * @since 8 févr. 2017
  */
@@ -27,34 +27,34 @@ import org.codehaus.plexus.util.IOUtil;
        defaultPhase = LifecyclePhase.GENERATE_SOURCES,
        requiresProject = true )
 public class ArtifactInfoMojo extends AbstractMojo {
-    
+
     /** The parent Maven project. */
     @Parameter( defaultValue = "${project}", required = true, readonly = true )
     private MavenProject project;
-    
+
     /** Parent output directory. */
     @Parameter( defaultValue = "${project.build.directory}/artifact-info", required = true )
     private File outputDirectory;
-    
+
     /** The java package name of the generated class. */
     @Parameter( defaultValue = "${project.groupId}", required = true )
     private String packageName;
-    
+
     /** The java class name of the generated class. */
     @Parameter( defaultValue = "ArtifactInfo", required = true )
     private String className;
-    
-    
+
+
     /**
      * {@inheritDoc}
      */
     public void execute() throws MojoExecutionException, MojoFailureException {
-        
+
         if (!("jar".equals(project.getPackaging()) || "war".equals(project.getPackaging()))) {
             getLog().info("skipping artifact-info generation (project packaging is not jar|war)");
             return;
         }
-        
+
         Map<String, String> props = new HashMap<String, String>();
         props.put("artifact-info.packageName", packageName);
         props.put("artifact-info.className", className);
@@ -66,28 +66,27 @@ public class ArtifactInfoMojo extends AbstractMojo {
         props.put("artifact-info.builtBy", ArtifactInfoUtils.getUserName());
         props.put("artifact-info.buildDate", ArtifactInfoUtils.getCurrentDateTimeInUTC());
         props.put("artifact-info.buildHost", ArtifactInfoUtils.getHostName());
-        
+
         String template = getTemplateContent();
         String classContent = ArtifactInfoUtils.applyTemplate(template, props);
-        
+
         String dirPath = ArtifactInfoUtils.translatePackageNameToFilePath(packageName);
         File parentDir = new File(outputDirectory, dirPath);
         ArtifactInfoUtils.createOutputStructure(parentDir);
-        
+
         File classFile = new File(parentDir, className + ".java");
         generateClass(classFile, classContent);
-        
+
         project.addCompileSourceRoot(outputDirectory.getAbsolutePath());
         if (getLog().isDebugEnabled()) {
             getLog().debug("output directory added to project sources");
         }
-        
+
         getLog().info("artifact info successfully generated: " + classFile.getAbsolutePath());
     }
-    
-    
+
+
     private String getTemplateContent() throws MojoExecutionException {
-        
         InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("ArtifactInfo.tpl");
         try {
             return IOUtil.toString(is);
@@ -95,10 +94,9 @@ public class ArtifactInfoMojo extends AbstractMojo {
             throw new MojoExecutionException("Error reading template file", e);
         }
     }
-    
-    
+
+
     private void generateClass(final File classFile, final String content) throws MojoExecutionException {
-        
         try {
             FileUtils.fileWrite(classFile, content);
         }
@@ -106,5 +104,5 @@ public class ArtifactInfoMojo extends AbstractMojo {
             throw new MojoExecutionException("Error creating file " + classFile.getAbsolutePath(), e);
         }
     }
-    
+
 }
