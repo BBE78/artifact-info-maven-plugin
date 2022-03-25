@@ -1,4 +1,7 @@
-package org.bbe.maven.plugins.artifactinfo;
+/**
+ *
+ */
+package io.github.bbe78.maven.plugins.artifactinfo;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +21,7 @@ import org.codehaus.plexus.util.IOUtil;
 
 
 /**
- *
+ * Maven mojo that generates the source including project information
  *
  * @author Benoît BERTHONNEAU
  * @since 8 févr. 2017
@@ -48,6 +51,7 @@ public class ArtifactInfoMojo extends AbstractMojo {
     /**
      * {@inheritDoc}
      */
+    @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
 
         if (!("jar".equals(project.getPackaging()) || "war".equals(project.getPackaging()))) {
@@ -75,7 +79,7 @@ public class ArtifactInfoMojo extends AbstractMojo {
         ArtifactInfoUtils.createOutputStructure(parentDir);
 
         File classFile = new File(parentDir, className + ".java");
-        generateClass(classFile, classContent);
+        writeFile(classFile, classContent);
 
         project.addCompileSourceRoot(outputDirectory.getAbsolutePath());
         if (getLog().isDebugEnabled()) {
@@ -86,6 +90,12 @@ public class ArtifactInfoMojo extends AbstractMojo {
     }
 
 
+    /**
+     * Load from the classpath the content of the source template.
+     * 
+     * @return the template content
+     * @throws MojoExecutionException if the template could not be found
+     */
     private String getTemplateContent() throws MojoExecutionException {
         InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("ArtifactInfo.tpl");
         try {
@@ -96,7 +106,14 @@ public class ArtifactInfoMojo extends AbstractMojo {
     }
 
 
-    private void generateClass(final File classFile, final String content) throws MojoExecutionException {
+    /**
+     * Writes the class file on the file system
+     * 
+     * @param classFile the output file
+     * @param content the file content
+     * @throws MojoExecutionException if the file could not be written
+     */
+    private void writeFile(final File classFile, final String content) throws MojoExecutionException {
         try {
             FileUtils.fileWrite(classFile, content);
         }

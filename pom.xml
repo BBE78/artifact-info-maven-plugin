@@ -2,9 +2,9 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.bbe.maven.plugins</groupId>
+  <groupId>io.github.bbe78</groupId>
   <artifactId>artifact-info-maven-plugin</artifactId>
-  <version>1.0</version>
+  <version>1.0-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
 
   <name>Artifact Info Maven Plugin</name>
@@ -15,7 +15,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
-    <maven.version>3.3.3</maven.version>
+    <maven.version>3.8.5</maven.version>
     <junit.version>5.5.2</junit.version>
   </properties>
 
@@ -41,17 +41,30 @@
       </roles>
     </developer>
   </developers>
+  
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </distributionManagement>
 
   <dependencies>
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-plugin-api</artifactId>
       <version>${maven.version}</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-project</artifactId>
       <version>2.2.1</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.maven.plugin-tools</groupId>
@@ -91,9 +104,53 @@
         <filtering>true</filtering>
       </resource>
     </resources>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>3.1.0</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.2.0</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.10.1</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>3.0.0-M5</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.2.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>3.0.0-M1 </version>
+        </plugin>
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>0.8.5</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-plugin-plugin</artifactId>
+          <version>3.6.4</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>3.0.0-M5</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-invoker-plugin</artifactId>
+          <version>3.2.2</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
         <configuration>
           <delimiters>
@@ -104,7 +161,6 @@
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.8.5</version>
         <executions>
           <execution>
             <id>pre-unit-tests</id>
@@ -113,7 +169,7 @@
             </goals>
             <configuration>
               <includes>
-                <include>org.bbe.*</include>
+                <include>io.github.bbe78.*</include>
               </includes>
             </configuration>
           </execution>
@@ -132,9 +188,7 @@
         </executions>
       </plugin>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-plugin-plugin</artifactId>
-        <version>3.5</version>
         <configuration>
           <goalPrefix>artifact-info</goalPrefix>
         </configuration>
@@ -152,11 +206,6 @@
             </goals>
           </execution>
         </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-release-plugin</artifactId>
-        <version>2.5.3</version>
       </plugin>
     </plugins>
   </build>
@@ -179,7 +228,7 @@
                   <destFile>${project.build.directory}/jacoco-it.exec</destFile>
                   <propertyName>invoker.mavenOpts</propertyName>
                   <includes>
-                    <include>org.bbe.*</include>
+                    <include>io.github.bbe78.*</include>
                   </includes>
                 </configuration>
               </execution>
@@ -210,11 +259,8 @@
             </executions>
           </plugin>
           <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-invoker-plugin</artifactId>
-            <version>2.0.0</version>
             <configuration>
-              <debug>true</debug>
               <cloneProjectsTo>${project.build.directory}/integration-tests</cloneProjectsTo>
               <pomIncludes>
                 <pomInclude>**/pom.xml</pomInclude>

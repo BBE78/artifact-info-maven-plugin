@@ -1,7 +1,7 @@
 /**
  *
  */
-package org.bbe.maven.plugins.artifactinfo;
+package io.github.bbe78.maven.plugins.artifactinfo;
 
 import java.io.File;
 import java.net.InetAddress;
@@ -27,6 +27,7 @@ import org.apache.maven.project.MavenProject;
  */
 final class ArtifactInfoUtils {
 
+    /** The token property pattern. */
     private static final String PROPERTY_TOKEN_FORMAT = "@%s@";
 
 
@@ -38,6 +39,12 @@ final class ArtifactInfoUtils {
     }
 
 
+    /**
+     * Returns the project name (or artifactId) from the Maven project
+     * 
+     * @param project the Maven project
+     * @return the name, or the artifactId if name is <code>null</code>
+     */
     static String extractProjectName(final MavenProject project) {
         if (project.getModel().getName() != null) {
             return project.getModel().getName();
@@ -47,6 +54,12 @@ final class ArtifactInfoUtils {
     }
 
 
+    /**
+     * Return the project description from the Maven project.
+     * 
+     * @param project the Maven project
+     * @return the project description or an empty string
+     */
     static String extractProjectDescription(final MavenProject project) {
         if (project.getDescription() != null) {
             return project.getDescription();
@@ -56,6 +69,14 @@ final class ArtifactInfoUtils {
     }
 
 
+    /**
+     * Replace a property by its value in the specified buffer
+     * 
+     * @param buffer the buffer to be replaced
+     * @param propertyName the name of the property
+     * @param propertyValue the property value
+     * @return the buffer replaced with values
+     */
     static String replacePropertyWithValue(final String buffer,  final String propertyName, final String propertyValue) {
         if (buffer == null) {
             throw new IllegalArgumentException("input buffer could not be null");
@@ -70,6 +91,13 @@ final class ArtifactInfoUtils {
     }
 
 
+    /**
+     * Replace all property values from the template
+     * 
+     * @param template the template to use
+     * @param props the map of properties to be replaced
+     * @return the template replaced with values
+     */
     static String applyTemplate(final String template, final Map<String, String> props) {
         String data = template;
         Set<Entry<String, String>> entries = props.entrySet();
@@ -80,6 +108,12 @@ final class ArtifactInfoUtils {
     }
 
 
+    /**
+     * Translate a Java package name into a file path
+     * 
+     * @param packageName the Java package name
+     * @return the translated package name into file path
+     */
     static String translatePackageNameToFilePath(final String packageName) {
         if (packageName == null) {
             throw new IllegalArgumentException("input package name could not be null");
@@ -89,6 +123,11 @@ final class ArtifactInfoUtils {
     }
 
 
+    /**
+     * Returns the current machine hostname, or "unknown" is an error occured
+     * 
+     * @return the hostname
+     */
     static String getHostName() {
         try {
             return InetAddress.getLocalHost().getHostName();
@@ -98,11 +137,21 @@ final class ArtifactInfoUtils {
     }
 
 
+    /**
+     * Returns the current user name
+     * 
+     * @return the user name
+     */
     static String getUserName() {
         return System.getProperty("user.name");
     }
 
 
+    /**
+     * Returns the current UTC time formatted as "YYY-MM-DD HH:mm:ss z"
+     * 
+     * @return the formatted date
+     */
     static String getCurrentDateTimeInUTC() {
         TimeZone utcTimeZone = TimeZone.getTimeZone("UTC");
         Date now = Calendar.getInstance(utcTimeZone).getTime();
@@ -112,6 +161,12 @@ final class ArtifactInfoUtils {
     }
 
 
+    /**
+     * Creates the specified dir (recursive) if needed
+     * 
+     * @param dir the directory to create
+     * @throws MojoExecutionException if the directories could not be created.
+     */
     static void createOutputStructure(final File dir) throws MojoExecutionException {
         if (!dir.exists() && !dir.mkdirs()) {
             throw new MojoExecutionException("could not create output directory " + dir.getAbsolutePath());

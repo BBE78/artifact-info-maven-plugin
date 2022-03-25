@@ -41,7 +41,6 @@ public final class @artifact-info.className@ {
      * @return the project groupId.
      */
     public static String getGroupId() {
-        
         return GROUP_ID;
     }
     
@@ -53,7 +52,6 @@ public final class @artifact-info.className@ {
      * @return the project artifactId.
      */
     public static String getArtifactId() {
-        
         return ARTIFACT_ID;
     }
     
@@ -65,7 +63,6 @@ public final class @artifact-info.className@ {
      * @return the project version.
      */
     public static String getVersion() {
-        
         return VERSION;
     }
     
@@ -77,7 +74,6 @@ public final class @artifact-info.className@ {
      * @return the project name.
      */
     public static String getName() {
-        
         return NAME;
     }
     
@@ -89,7 +85,6 @@ public final class @artifact-info.className@ {
      * @return the project description.
      */
     public static String getDescription() {
-        
         return DESCRIPTION;
     }
     
@@ -101,7 +96,6 @@ public final class @artifact-info.className@ {
      * @return the user name that built the project.
      */
     public static String getBuiltBy() {
-        
         return BUILT_BY;
     }
     
@@ -113,7 +107,6 @@ public final class @artifact-info.className@ {
      * @return the project build date.
      */
     public static String getBuildDate() {
-        
         return BUILD_DATE;
     }
     
@@ -125,7 +118,6 @@ public final class @artifact-info.className@ {
      * @return the host name where the project was built.
      */
     public static String getBuildHost() {
-        
         return BUILD_HOST;
     }
     
@@ -137,7 +129,6 @@ public final class @artifact-info.className@ {
      * @return the project full name.
      */
     public static String getFullName() {
-        
         return getName() + " [v" + getVersion() + "]"; 
     }
     
@@ -149,7 +140,6 @@ public final class @artifact-info.className@ {
      *      the program arguments, not used.
      */
     public static void main(String[] args) {
-        
         displayProperties(System.out);
     }
     
@@ -161,7 +151,6 @@ public final class @artifact-info.className@ {
      *      the PrintStream where properties will be displayed.
      */
     public static void displayProperties(final PrintStream out) {
-        
         out.println(getFullName());
         out.println("\t- groupId    : " + getGroupId());
         out.println("\t- artifactId : " + getArtifactId());

@@ -1,7 +1,7 @@
 /**
  *
  */
-package org.bbe.maven.plugins.artifactinfo;
+package io.github.bbe78.maven.plugins.artifactinfo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -49,8 +49,6 @@ public class ArtifactInfoUtilsTestCase {
         } catch (InvocationTargetException e) {
             assertEquals(UnsupportedOperationException.class, e.getTargetException().getClass());
         }
-
-        System.out.println();
     }
 
 
