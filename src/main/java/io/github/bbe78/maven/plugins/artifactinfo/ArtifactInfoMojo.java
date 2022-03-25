@@ -59,7 +59,7 @@ public class ArtifactInfoMojo extends AbstractMojo {
             return;
         }
 
-        Map<String, String> props = new HashMap<String, String>();
+        Map<String, String> props = new HashMap<>();
         props.put("artifact-info.packageName", packageName);
         props.put("artifact-info.className", className);
         props.put("artifact-info.groupId", project.getGroupId());

@@ -155,7 +155,7 @@ final class ArtifactInfoUtils {
     static String getCurrentDateTimeInUTC() {
         TimeZone utcTimeZone = TimeZone.getTimeZone("UTC");
         Date now = Calendar.getInstance(utcTimeZone).getTime();
-        DateFormat formatter = new SimpleDateFormat("YYY-MM-DD HH:mm:ss z");
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-DD HH:mm:ss z");
         formatter.setTimeZone(utcTimeZone);
         return formatter.format(now);
     }

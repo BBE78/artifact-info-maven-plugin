@@ -25,7 +25,7 @@ import org.junit.jupiter.api.Test;
  * @author Benoît BERTHONNEAU
  * @since 11 févr. 2017
  */
-public class ArtifactInfoUtilsTestCase {
+class ArtifactInfoUtilsTestCase {
 
 
     /**
@@ -34,7 +34,7 @@ public class ArtifactInfoUtilsTestCase {
      * @throws Throwable
      */
     @Test
-    public void testPrivateConstructor() throws Throwable {
+    void testPrivateConstructor() throws Throwable {
 
         Constructor<?>[] constructors = ArtifactInfoUtils.class.getDeclaredConstructors();
         assertEquals(1, constructors.length);
@@ -56,7 +56,7 @@ public class ArtifactInfoUtilsTestCase {
      * Test method for {@link ArtifactInfoUtils#replacePropertyWithValue(java.lang.String, java.lang.String, java.lang.String)}.
      */
     @Test
-    public void testReplacePropertyWithValue() {
+     void testReplacePropertyWithValue() {
 
         String result = ArtifactInfoUtils.replacePropertyWithValue("Hello @name@, how are you?", "name", "Ken");
         assertEquals("Hello Ken, how are you?", result);
@@ -67,7 +67,7 @@ public class ArtifactInfoUtilsTestCase {
      * Test method for {@link ArtifactInfoUtils#replacePropertyWithValue(java.lang.String, java.lang.String, java.lang.String)}.
      */
     @Test
-    public void testReplacePropertyWithValueWithMultiplePropertyInstances() {
+    void testReplacePropertyWithValueWithMultiplePropertyInstances() {
 
         String result = ArtifactInfoUtils.replacePropertyWithValue("Hello @name@, how are you @name@?", "name", "Ken");
         assertEquals("Hello Ken, how are you Ken?", result);
@@ -78,7 +78,7 @@ public class ArtifactInfoUtilsTestCase {
      * Test method for {@link ArtifactInfoUtils#replacePropertyWithValue(java.lang.String, java.lang.String, java.lang.String)}.
      */
     @Test
-    public void testReplacePropertyWithValueWithNullBuffer() {
+    void testReplacePropertyWithValueWithNullBuffer() {
         assertThrows(IllegalArgumentException.class, () -> {
             ArtifactInfoUtils.replacePropertyWithValue(null, "name", "Ken");
         });
@@ -89,7 +89,7 @@ public class ArtifactInfoUtilsTestCase {
      * Test method for {@link ArtifactInfoUtils#replacePropertyWithValue(java.lang.String, java.lang.String, java.lang.String)}.
      */
     @Test
-    public void testReplacePropertyWithValueWithNullPropertyName() {
+    void testReplacePropertyWithValueWithNullPropertyName() {
         assertThrows(IllegalArgumentException.class, () -> {
             ArtifactInfoUtils.replacePropertyWithValue("Dummy", null, "Ken");
         });
@@ -100,7 +100,7 @@ public class ArtifactInfoUtilsTestCase {
      * Test method for {@link ArtifactInfoUtils#replacePropertyWithValue(java.lang.String, java.lang.String, java.lang.String)}.
      */
     @Test
-    public void testReplacePropertyWithValueWithNullPropertyValue() {
+    void testReplacePropertyWithValueWithNullPropertyValue() {
         assertThrows(IllegalArgumentException.class, () -> {
             ArtifactInfoUtils.replacePropertyWithValue("Dummy", "name", null);
         });
@@ -111,7 +111,7 @@ public class ArtifactInfoUtilsTestCase {
      * Test method for {@link ArtifactInfoUtils#translatePackageNameToFilePath(java.lang.String)}.
      */
     @Test
-    public void testTranslatePackageNameToFilePath() {
+    void testTranslatePackageNameToFilePath() {
 
         String actual = ArtifactInfoUtils.translatePackageNameToFilePath("org.bbe.test");
         String expected = "org" + File.separator + "bbe" + File.separator + "test";
@@ -123,7 +123,7 @@ public class ArtifactInfoUtilsTestCase {
      * Test method for {@link ArtifactInfoUtils#translatePackageNameToFilePath(java.lang.String)}.
      */
     @Test
-    public void testTranslatePackageNameToFilePathWithNull() {
+    void testTranslatePackageNameToFilePathWithNull() {
         assertThrows(IllegalArgumentException.class, () -> {
             ArtifactInfoUtils.translatePackageNameToFilePath(null);
         });
@@ -134,7 +134,7 @@ public class ArtifactInfoUtilsTestCase {
      * Test method for {@link ArtifactInfoUtils#getUserName()}.
      */
     @Test
-    public void testGetUserName() {
+    void testGetUserName() {
 
         String result = ArtifactInfoUtils.getUserName();
         assertNotNull(result);
@@ -145,7 +145,7 @@ public class ArtifactInfoUtilsTestCase {
      * Test method for {@link ArtifactInfoUtils#getHostName()}.
      */
     @Test
-    public void testGetHostName() {
+    void testGetHostName() {
 
         String result = ArtifactInfoUtils.getHostName();
         assertNotNull(result);
@@ -156,7 +156,7 @@ public class ArtifactInfoUtilsTestCase {
      * Test method for {@link ArtifactInfoUtils#getCurrentDateTimeInUTC()}.
      */
     @Test
-    public void testGetCurrentDateTimeInGMT() {
+    void testGetCurrentDateTimeInGMT() {
 
         String result = ArtifactInfoUtils.getCurrentDateTimeInUTC();
         assertNotNull(result);
@@ -170,7 +170,7 @@ public class ArtifactInfoUtilsTestCase {
      * @throws MojoExecutionException
      */
     @Test
-    public void testCreateOutputStructure() throws MojoExecutionException {
+    void testCreateOutputStructure() throws MojoExecutionException {
 
         File dir = new File("target", "temp/dummy/test");
         ArtifactInfoUtils.createOutputStructure(dir);
@@ -185,7 +185,7 @@ public class ArtifactInfoUtilsTestCase {
      * @throws MojoExecutionException
      */
     @Test
-    public void testCreateOutputStructureWithExistingDir() throws MojoExecutionException {
+    void testCreateOutputStructureWithExistingDir() throws MojoExecutionException {
 
         File dir = new File("target", "temp/dummy/test");
         assertTrue(dir.mkdirs());
@@ -199,7 +199,7 @@ public class ArtifactInfoUtilsTestCase {
      * Test method for {@link ArtifactInfoUtils#extractProjectName(org.apache.maven.project.MavenProject)}.
      */
     @Test
-    public void testExtractProjectName() {
+    void testExtractProjectName() {
 
         MavenProject project = new MavenProject();
         project.setGroupId("com.mycompany");
@@ -223,7 +223,7 @@ public class ArtifactInfoUtilsTestCase {
      * Test method for {@link ArtifactInfoUtils#extractProjectDescription(org.apache.maven.project.MavenProject)}.
      */
     @Test
-    public void testExtractProjectDescription() {
+    void testExtractProjectDescription() {
 
         MavenProject project = new MavenProject();
 
