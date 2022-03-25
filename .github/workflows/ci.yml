@@ -38,13 +38,13 @@ jobs:
       uses: actions/upload-artifact@v2
       if: always()
       with:
-        report_paths: './target/integration-tests/**/build.log'
+        path: './target/integration-tests/**/build.log'
                 
     - name: Publish Integration Test Reports
       uses: actions/upload-artifact@v2
       if: always()
       with:
-        report_paths: './target/invoker-reports/*.xml'
+        path: './target/invoker-reports/*.xml'
         
     - name: Upload JaCoCo HTML report
       uses: actions/upload-artifact@v2
