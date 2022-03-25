@@ -17,6 +17,10 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.version>3.8.5</maven.version>
     <junit.version>5.5.2</junit.version>
+    
+    <!-- SonarCloud settings... -->
+    <sonar.organization>bbe78</sonar.organization>
+    <sonar.host.url>https://sonarcloud.io</sonar.host.url>
   </properties>
 
   <scm>
