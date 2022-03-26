@@ -43,8 +43,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      # run: mvn -P run-its install
-      run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=BBE78_artifact-info-maven-plugin
+      run: mvn --batch-mode -P run-its verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=BBE78_artifact-info-maven-plugin
 
     - name: Publish Test Report
       uses: mikepenz/action-junit-report@v3
