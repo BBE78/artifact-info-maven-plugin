@@ -1,9 +1,29 @@
 # artifact-info-maven-plugin
+
 Artifact Info Maven Plugin automatically generates your Maven project information from your `pom.xml` into a Java class, usable into your Java application.
 
+<p align="center">
+<a href="https://github.com/BBE78/artifact-info-maven-plugin/actions/workflows/ci.yml"><img src="https://github.com/BBE78/artifact-info-maven-plugin/actions/workflows/ci.yml/badge.svg"></a>
+<a href="https://sonarcloud.io/summary/overall?id=BBE78_artifact-info-maven-plugin"><img src="https://sonarcloud.io/api/project_badges/measure?project=BBE78_artifact-info-maven-plugin&metric=alert_status"></a>
+<a href="https://sonarcloud.io/project/issues?resolved=false&id=BBE78_artifact-info-maven-plugin"><img src="https://sonarcloud.io/api/project_badges/measure?project=BBE78_artifact-info-maven-plugin&metric=bugs"></a>
+<a href="https://sonarcloud.io/project/issues?resolved=false&id=BBE78_artifact-info-maven-plugin"><img src="https://sonarcloud.io/api/project_badges/measure?project=BBE78_artifact-info-maven-plugin&metric=code_smells"></a>
+<a href="https://sonarcloud.io/component_measures?id=BBE78_artifact-info-maven-plugin&metric=coverage&view=list"><img src="https://sonarcloud.io/api/project_badges/measure?project=BBE78_artifact-info-maven-plugin&metric=coverage"></a>
+</p>
+
+## Why do I need it?
+
+This plugin is usefull for printing your Java application or library name/version to the console or inside your "About" dialog.
+
+I typically use it as the first log of my application:
+```
+[info] starting myApp v2.3...
+```
+
 ## Usage Example
+
 The following pluging usage:
-``` xml
+
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -41,6 +61,7 @@ The following pluging usage:
 ```
 
 will generate the following class:
+
 ```java
 package com.mycompany.myproject;
 
@@ -85,7 +106,6 @@ public final class ArtifactInfo {
      * @return the project groupId.
      */
     public static String getGroupId() {
-
         return GROUP_ID;
     }
 
@@ -97,7 +117,6 @@ public final class ArtifactInfo {
      * @return the project artifactId.
      */
     public static String getArtifactId() {
-
         return ARTIFACT_ID;
     }
 
@@ -109,7 +128,6 @@ public final class ArtifactInfo {
      * @return the project version.
      */
     public static String getVersion() {
-
         return VERSION;
     }
 
@@ -121,7 +139,6 @@ public final class ArtifactInfo {
      * @return the project name.
      */
     public static String getName() {
-
         return NAME;
     }
 
@@ -133,7 +150,6 @@ public final class ArtifactInfo {
      * @return the project description.
      */
     public static String getDescription() {
-
         return DESCRIPTION;
     }
 
@@ -145,7 +161,6 @@ public final class ArtifactInfo {
      * @return the user name that built the project.
      */
     public static String getBuiltBy() {
-
         return BUILT_BY;
     }
 
@@ -157,7 +172,6 @@ public final class ArtifactInfo {
      * @return the project build date.
      */
     public static String getBuildDate() {
-
         return BUILD_DATE;
     }
 
@@ -169,7 +183,6 @@ public final class ArtifactInfo {
      * @return the host name where the project was built.
      */
     public static String getBuildHost() {
-
         return BUILD_HOST;
     }
 
@@ -181,7 +194,6 @@ public final class ArtifactInfo {
      * @return the project full name.
      */
     public static String getFullName() {
-
         return getName() + " [v" + getVersion() + "]";
     }
 
@@ -193,7 +205,6 @@ public final class ArtifactInfo {
      *      the program arguments, not used.
      */
     public static void main(String[] args) {
-
         displayProperties(System.out);
     }
 
@@ -205,7 +216,6 @@ public final class ArtifactInfo {
      *      the PrintStream where properties will be displayed.
      */
     public static void displayProperties(final PrintStream out) {
-
         out.println(getFullName());
         out.println("\t- groupId    : " + getGroupId());
         out.println("\t- artifactId : " + getArtifactId());
@@ -221,10 +231,24 @@ public final class ArtifactInfo {
 ```
 
 ## Dependencies
+
 The generated class file is free of any dependency.
 
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FBBE78%2Fartifact-info-maven-plugin.svg?type=small)](https://app.fossa.com/projects/git%2Bgithub.com%2FBBE78%2Fartifact-info-maven-plugin?ref=badge_small)
+
 ## Issues
+
+![GitHub issues](https://img.shields.io/github/issues-raw/BBE78/artifact-info-maven-plugin)
+![GitHub issues](https://img.shields.io/github/issues-closed-raw/BBE78/artifact-info-maven-plugin)
+
 Please report any issues or enhancements in [GitHub Issues Sytem](https://github.com/BBE78/artifact-info-maven-plugin/issues).
 
+## Changelog
+
+Version changes are available in [CHANGELOG](/CHANGELOG.md)
+
 ## License
-Artifact Info Maven Plugin is delivered under the Apache License v2.
+
+[![license](https://img.shields.io/badge/license-Apache_2-green.svg)](/LICENSE)
+
+Artifact Info Maven Plugin is delivered under the [Apache License v2](/LICENSE).
