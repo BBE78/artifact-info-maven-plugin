@@ -1,4 +1,6 @@
 # artifact-info-maven-plugin
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FBBE78%2Fartifact-info-maven-plugin.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FBBE78%2Fartifact-info-maven-plugin?ref=badge_shield)
+
 Artifact Info Maven Plugin automatically generates your Maven project information from your `pom.xml` into a Java class, usable into your Java application.
 
 ## Usage Example
@@ -228,3 +230,6 @@ Please report any issues or enhancements in [GitHub Issues Sytem](https://github
 
 ## License
 Artifact Info Maven Plugin is delivered under the Apache License v2.
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FBBE78%2Fartifact-info-maven-plugin.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FBBE78%2Fartifact-info-maven-plugin?ref=badge_large)
