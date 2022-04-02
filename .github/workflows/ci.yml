@@ -55,16 +55,18 @@ jobs:
       uses: actions/upload-artifact@v2
       if: always()
       with:
+        name: integration tests logs
         path: './target/integration-tests/**/build.log'
                 
     - name: Publish Integration Test Reports
       uses: actions/upload-artifact@v2
       if: always()
       with:
+        name: invoker reports
         path: './target/invoker-reports/*.xml'
         
     - name: Upload JaCoCo HTML report
       uses: actions/upload-artifact@v2
       with:
-        name: JaCoCo HTML Report
+        name: JaCoCo html report
         path: './target/site/jacoco'
